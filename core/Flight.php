@@ -60,18 +60,21 @@ class Flight{
         //execute
         $stmt->execute();
 
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      
-
-        $this->airline = $row['airline'];
-        $this->number = $row['number'];
-        $this->departure_airport = $row['departure_airport'];
-        $this->departure_time = $row['departure_time'];
-        $this->arrival_airport = $row['arrival_airport'];
-        $this->arrival_time = $row['arrival_time'];
-        $this->price = $row['price'];
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->airline = $row['airline'];
+            $this->number = $row['number'];
+            $this->departure_airport = $row['departure_airport'];
+            $this->departure_time = $row['departure_time'];
+            $this->arrival_airport = $row['arrival_airport'];
+            $this->arrival_time = $row['arrival_time'];
+            $this->price = $row['price'];
+            return true;
+        } else {
+            return false;
+        }
        
-        return $stmt;
+       // return $stmt;
     }
 
     //store flight

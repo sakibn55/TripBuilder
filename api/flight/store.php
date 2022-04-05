@@ -28,6 +28,12 @@ $flight->arrival_time = $data->arrival_time;
 
 $flight->price = $data->price;
 
+//check flight exists with same number
+if ($flight->show()) {
+    echo json_encode(array('message' => "Flight number must be unique!"));
+    return false;
+}
+
 if($flight->store()){
     echo json_encode(array('message' => "Flight created"));
 }else{
