@@ -11,4 +11,5 @@ require_once(INC_PATH . DS . "config.php");
 //core classes
 require_once(CORE_PATH . DS . "Flight.php");
 require_once(CORE_PATH . DS . "Airline.php");
+require_once(CORE_PATH . DS . "Airport.php");
 ?>
