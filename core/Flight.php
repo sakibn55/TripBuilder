@@ -242,7 +242,7 @@ class Flight{
             $result = $this->calculate_result($data, 'airline');
             return $result;
         }
-
+        $data = array('message' => "No flights found!");
         return $data;
     }
 
@@ -257,6 +257,7 @@ class Flight{
 
         foreach ($array as $val) {
 
+            //make an unique array with airline name
             $value = $val[$key];
             if (!in_array($val[$key], $key_array)) {
                 $key_array[$i] = $val[$key];
@@ -268,8 +269,10 @@ class Flight{
             $i++;
         }
 
+        //count total prices and push to flights 
         foreach ($temp_array as $item) {
             foreach ($item as  $flight) {
+                ///checking price is set 
                 (isset($data['trips'][$count]['price'])) ? $data['trips'][$count]['price'] += $flight['price'] : $data['trips'][$count]['price'] = $flight['price'];
 
                 $data['trips'][$count]['flights'][] = $flight;
