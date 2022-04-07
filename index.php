@@ -113,11 +113,10 @@
 
             </section>
             <!--//docs-intro-->
-          </header>
-          <section class="docs-section" id="item-3-1">
-            <div class="docs-code-block">
-              <h2 class="section-heading">Airline Model APIs</h2>
-              <pre class="shadow-lg rounded"><code class="json hljs">
+            <section class="docs-section" id="item-3-1">
+              <div class="docs-code-block">
+                <h2 class="section-heading">Airline Model APIs</h2>
+                <pre class="shadow-lg rounded"><code class="json hljs">
 GET/api/airline/all.php                              
 [
   {
@@ -154,15 +153,15 @@ DELETE/api/airline/delete.php
   }
 
 </code></pre>
-            </div>
-            <!--//docs-code-block-->
-          </section>
-          <!--//section-->
+              </div>
+              <!--//docs-code-block-->
+            </section>
+            <!--//section-->
 
-          <section class="docs-section" id="item-3-2">
-            <h2 class="section-heading">Airport Model APIs</h2>
-            <div class="docs-code-block">
-              <pre class="shadow-lg rounded"><code class="json hljs">
+            <section class="docs-section" id="item-3-2">
+              <h2 class="section-heading">Airport Model APIs</h2>
+              <div class="docs-code-block">
+                <pre class="shadow-lg rounded"><code class="json hljs">
 GET/api/airport/all.php                              
 [
   {
@@ -235,15 +234,15 @@ DELETE/api/airport/delete.php
 
 
 </code></pre>
-            </div>
-            <!--//docs-code-block-->
-          </section>
-          <!--//section-->
+              </div>
+              <!--//docs-code-block-->
+            </section>
+            <!--//section-->
 
-          <section class="docs-section" id="item-3-3">
-            <h2 class="section-heading">Flight Model APIs</h2>
-            <div class="docs-code-block">
-              <pre class="shadow-lg rounded"><code class="json hljs">
+            <section class="docs-section" id="item-3-3">
+              <h2 class="section-heading">Flight Model APIs</h2>
+              <div class="docs-code-block">
+                <pre class="shadow-lg rounded"><code class="json hljs">
 GET/api/flight/all.php                              
 [
   {
@@ -306,15 +305,15 @@ DELETE/api/flight/delete.php
 
 
 </code></pre>
-            </div>
-            <!--//docs-code-block-->
-          </section>
-          <!--//section-->
+              </div>
+              <!--//docs-code-block-->
+            </section>
+            <!--//section-->
 
-          <section class="docs-section" id="item-4-1">
-            <h2 class="section-heading">Search Flights APIs</h2>
-            <div class="docs-code-block">
-              <pre class="shadow-lg rounded"><code class="json hljs">
+            <section class="docs-section" id="item-4-1">
+              <h2 class="section-heading">Search Flights APIs</h2>
+              <div class="docs-code-block">
+                <pre class="shadow-lg rounded"><code class="json hljs">
 POST/api/flight/search.php                              
 
   {
@@ -358,10 +357,10 @@ Response:
 }
 
 </code></pre>
-            </div>
-            <!--//docs-code-block-->
-          </section>
-          <!--//section-->
+              </div>
+              <!--//docs-code-block-->
+            </section>
+            <!--//section-->
         </article>
         <!--//docs-article-->
 
