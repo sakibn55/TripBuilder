@@ -14,6 +14,7 @@ class Flight{
     public $arrival_airport;
     public $arrival_time;
     public $price;
+    public $trip_type;
 
     //constructor with db connection
 
@@ -166,5 +167,116 @@ class Flight{
         }
         printf("Error %s. \n", $stmt->error);
         return false;
+    }
+
+    //flight request
+    public function search()
+    {
+        $data = array();
+
+        if ($this->trip_type === "round-trip") {
+
+            $query =
+                'SELECT a.code as airline_code, flight.* 
+            FROM airlines as a
+            JOIN (SELECT * FROM
+                ' . $this->table . '
+                WHERE departure_airport = :departure_airport AND arrival_airport = :arrival_airport OR departure_airport = :arrival_airport AND arrival_airport = :departure_airport
+            ) as flight
+            ON a.code = flight.airline';
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':departure_airport', $this->departure_airport);
+            $stmt->bindParam(':arrival_airport', $this->arrival_airport);
+            $stmt->execute();
+            $rowStmt = $stmt->rowCount();
+
+            if ($rowStmt > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    extract($row);
+                    $flight_item = array(
+                        'airline' => $airline,
+                        'number' => $number,
+                        'departure_airport' => $departure_airport,
+                        'departure_time' => $departure_time,
+                        'arrival_airport' => $arrival_airport,
+                        'arrival_time' => $arrival_time,
+                        'price' => $price,
+                    );
+                    array_push($data, $flight_item);
+                }
+            }
+            $result = $this->calculate_result($data, 'airline');
+            return $result;
+        } else if ($this->trip_type === "one-way") {
+            $query =
+                'SELECT a.code as airline_code, flight.* 
+            FROM airlines as a
+            JOIN (SELECT * FROM
+                ' . $this->table . '
+                WHERE departure_airport = :departure_airport AND arrival_airport = :arrival_airport
+            ) as flight
+            ON a.code = flight.airline';
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':departure_airport', $this->departure_airport);
+            $stmt->bindParam(':arrival_airport', $this->arrival_airport);
+            $stmt->execute();
+            $rowStmt = $stmt->rowCount();
+            if ($rowStmt > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    extract($row);
+                    $flight_item = array(
+                        'airline' => $airline,
+                        'number' => $number,
+                        'departure_airport' => $departure_airport,
+                        'departure_time' => $departure_time,
+                        'arrival_airport' => $arrival_airport,
+                        'arrival_time' => $arrival_time,
+                        'price' => $price,
+                    );
+                    array_push($data, $flight_item);
+                }
+            }
+            $result = $this->calculate_result($data, 'airline');
+            return $result;
+        }
+
+        return $data;
+    }
+
+    public function calculate_result($array, $key)
+    {
+
+        $data = array();
+        $temp_array = array();
+        $i = 0;
+        $count = 0;
+        $key_array = array();
+
+        foreach ($array as $val) {
+
+            $value = $val[$key];
+            if (!in_array($val[$key], $key_array)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$value][] = $val;
+            } else {
+                $temp_array[$value][] = $val;
+            }
+
+            $i++;
+        }
+
+        foreach ($temp_array as $item) {
+            foreach ($item as  $flight) {
+                (isset($data['trips'][$count]['price'])) ? $data['trips'][$count]['price'] += $flight['price'] : $data['trips'][$count]['price'] = $flight['price'];
+
+                $data['trips'][$count]['flights'][] = $flight;
+            }
+            $count++;
+        }
+
+        return $data;
     }
 }

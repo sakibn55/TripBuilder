@@ -9,7 +9,7 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 //initializing
 include_once('../../core/initialize.php');
 
-//flight
+//airport
 $airport = new Airport($db);
 
 $data = json_decode(file_get_contents("php://input"));
