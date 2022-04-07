@@ -16,8 +16,6 @@ the week. Timezones are also ignored. It references a pair of airports for depar
 Ex: AC301 from YUL to YVR departs at 7:35 AM (Montreal) and arrives at 10:05 AM (Vancouver).
 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
 ## Mission
 
 Create an API to build and navigate trips for a single passenger using criteria such as
@@ -33,4 +31,5 @@ The following trip types MUST be supported:
 
 - Wamp
 - PHP 7.4.0
+- POSTMAN
 
