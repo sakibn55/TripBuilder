@@ -14,7 +14,6 @@ $result = $flight->index();
 $num = $result->rowCount();
 if($num > 0){
     $flight_arr = array();
-    $flight_arr['flights'] = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -27,7 +26,7 @@ if($num > 0){
             'arrival_time' => $arrival_time,
             'price' => $price,
         );
-        array_push($flight_arr['flights'], $flight_item);
+        array_push($flight_arr, $flight_item);
     }
     echo json_encode($flight_arr);
 }else{

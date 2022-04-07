@@ -14,15 +14,13 @@ $result = $airline->index();
 $num = $result->rowCount();
 if ($num > 0) {
     $arr = array();
-    $arr['airlines'] = array();
-
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $items = array(
             'code' => $code,
             'name' => $name,
         );
-        array_push($arr['airlines'], $items);
+        array_push($arr, $items);
     }
     echo json_encode($arr);
 } else {

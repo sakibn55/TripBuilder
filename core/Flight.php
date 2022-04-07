@@ -239,6 +239,7 @@ class Flight{
                     array_push($data, $flight_item);
                 }
             }
+            
             $result = $this->calculate_result($data, 'airline');
             return $result;
         }

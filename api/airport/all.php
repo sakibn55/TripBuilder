@@ -14,7 +14,6 @@ $result = $airport->index();
 $num = $result->rowCount();
 if ($num > 0) {
     $arr = array();
-    $arr['airports'] = array();
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -29,7 +28,7 @@ if ($num > 0) {
             'longitude' => $longitude,
             'timezone' => $timezone,
         );
-        array_push($arr['airports'], $items);
+        array_push($arr, $items);
     }
     echo json_encode($arr);
 } else {
